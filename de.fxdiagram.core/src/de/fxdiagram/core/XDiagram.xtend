@@ -110,7 +110,9 @@ class XDiagram extends Group implements XActivatable {
 					connectionLayer.children += it
 				}
 			]
-			unset = [ connectionLayer.children -= it ]
+			unset = [
+				//connectionLayer.children -= it
+			]
 		]
 		val labelListener = new InitializingListListener<XConnectionLabel> => [
 			add = [ 
