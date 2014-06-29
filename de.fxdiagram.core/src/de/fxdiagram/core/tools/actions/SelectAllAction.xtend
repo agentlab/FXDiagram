@@ -5,6 +5,8 @@ import eu.hansolo.enzo.radialmenu.Symbol
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class SelectAllAction implements DiagramAction {
 	
 	override matches(KeyEvent it) {
@@ -16,6 +18,6 @@ class SelectAllAction implements DiagramAction {
 	}
 	
 	override perform(XRoot root) {
-		root.diagram.allShapes.forEach[if(selectable) selected = true]
+		root.diagram.allShapes.forEachExt[if(selectable) selected = true]
 	}
 }

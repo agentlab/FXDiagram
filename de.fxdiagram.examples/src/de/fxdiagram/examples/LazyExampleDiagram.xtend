@@ -11,6 +11,8 @@ import de.fxdiagram.lib.simple.LevelOfDetailDiagramNode
 import de.fxdiagram.lib.simple.OpenableDiagramNode
 import de.fxdiagram.lib.simple.SimpleNode
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 @ModelNode(#['nameSuffix'])
 class LazyExampleDiagram extends XDiagram {
 	
@@ -57,7 +59,7 @@ class LazyExampleDiagram extends XDiagram {
 				]
 			]
 		} else {
-			nodes.forEach[
+			nodes.forEachExt[
 				if(!nameSuffix.empty || !(node instanceof SimpleNode))
 					addRapidButtons(nameSuffix)
 			]

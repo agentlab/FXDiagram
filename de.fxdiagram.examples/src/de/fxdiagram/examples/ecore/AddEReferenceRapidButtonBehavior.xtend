@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference
 import static de.fxdiagram.core.extensions.ButtonExtensions.*
 import static javafx.geometry.Side.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 import de.fxdiagram.core.XRapidButtonAction
 
@@ -40,7 +41,7 @@ class AddEReferenceRapidButtonBehavior extends AbstractConnectionRapidButtonBeha
 
 	override protected createChooser(XRapidButton button, Set<EReferenceDescriptor> availableChoiceKeys, Set<EReferenceDescriptor> unavailableChoiceKeys) {
 		val chooser = new CarusselChooser(host, button.chooserPosition)
-		availableChoiceKeys.forEach[
+		availableChoiceKeys.forEachExt[
 			chooser.addChoice(it.createNode, it)
 		]
 		chooser.connectionProvider = [ host, choice, descriptor |

@@ -6,6 +6,8 @@ import javafx.animation.Animation
 import javafx.animation.SequentialTransition
 import com.google.common.collect.Lists
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class AnimationQueue {
 	
 	Queue<()=>Animation> queue = newLinkedList
@@ -51,7 +53,7 @@ class AnimationQueue {
 				executeNext
 			} 
 		} else {
-			Lists.newArrayList(listeners).forEach[handleQueueEmpty]
+			Lists.newArrayList(listeners).forEachExt[handleQueueEmpty]
 		}
 	}
 	

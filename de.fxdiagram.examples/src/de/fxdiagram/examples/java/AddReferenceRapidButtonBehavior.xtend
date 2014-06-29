@@ -9,6 +9,7 @@ import de.fxdiagram.lib.model.AbstractConnectionRapidButtonBehavior
 import de.fxdiagram.lib.tools.CarusselChooser
 import java.util.Set
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static de.fxdiagram.core.extensions.ButtonExtensions.*
 import static javafx.geometry.Side.*
 
@@ -38,7 +39,7 @@ class AddReferenceRapidButtonBehavior extends AbstractConnectionRapidButtonBehav
 	
 	override protected createChooser(XRapidButton button, Set<JavaPropertyDescriptor> availableChoiceKeys, Set<JavaPropertyDescriptor> unavailableChoiceKeys) {
 		val chooser = new CarusselChooser(host, button.chooserPosition)
-		availableChoiceKeys.forEach[
+		availableChoiceKeys.forEachExt[
 			chooser.addChoice(it.createNode, it)
 		]
 		chooser.connectionProvider = [

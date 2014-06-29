@@ -8,6 +8,7 @@ import de.fxdiagram.lib.model.AbstractConnectionRapidButtonBehavior
 import de.fxdiagram.lib.tools.CoverFlowChooser
 import java.util.Set
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static de.fxdiagram.core.extensions.ButtonExtensions.*
 import static javafx.geometry.Side.*
 
@@ -37,7 +38,7 @@ class AddSuperTypeRapidButtonBehavior extends AbstractConnectionRapidButtonBehav
 	
 	override protected createChooser(XRapidButton button, Set<JavaSuperTypeDescriptor> availableChoiceKeys, Set<JavaSuperTypeDescriptor> unavailableChoiceKeys) {
 		val chooser = new CoverFlowChooser(host, button.chooserPosition)
-		availableChoiceKeys.forEach[
+		availableChoiceKeys.forEachExt[
 			chooser.addChoice(it.createNode, it)
 		]
 		chooser.connectionProvider = [

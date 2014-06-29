@@ -9,6 +9,7 @@ import javafx.scene.image.Image
 import javafx.scene.layout.Pane
 import javafx.scene.shape.Rectangle
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.DurationExtensions.*
 
 @ModelNode
@@ -28,7 +29,7 @@ class ClickThroughSlide extends Slide {
 	override initializeGraphics() {
 		super.initializeGraphics()
 		pane => [
-			children.tail.forEach[opacity = 0]
+			children.tail.forEachExt[opacity = 0]
 		]
 		currentNode = pane.children.head
 	}

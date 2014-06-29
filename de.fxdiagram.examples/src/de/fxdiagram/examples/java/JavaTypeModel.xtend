@@ -8,6 +8,8 @@ import org.eclipse.xtext.xbase.lib.Pair
 
 import static java.lang.reflect.Modifier.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class JavaTypeModel {
 	
 	List<Constructor<?>> constructors
@@ -26,7 +28,7 @@ class JavaTypeModel {
 		operations = javaType.declaredMethods.filter[isPublic(it.modifiers) && !name.startsWith('impl_')].toList
 		javaType.declaredMethods
 			.filter[isPublic(it.modifiers)]
-			.forEach[ method |
+			.forEachExt[ method |
 				val nameAndType = method.propertyNameAndType
 				if(nameAndType != null)
 					propertyMethods.put(nameAndType.key, nameAndType.value -> method)

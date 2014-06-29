@@ -25,6 +25,8 @@ import static de.fxdiagram.core.XConnection.Kind.*
 import de.fxdiagram.core.command.LazyCommand
 import de.fxdiagram.core.command.ParallelAnimationCommand
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class Layouter { 
 
 	extension KLayoutDataFactory = KLayoutDataFactory.eINSTANCE
@@ -131,7 +133,7 @@ class Layouter {
 			edgeLayout.targetPoint = createKPoint
 			kEdge.data += edgeLayout
 			cache.put(it, kEdge)
-			labels.forEach[ toKLabel(cache).parent = kEdge ]
+			labels.forEachExt[ toKLabel(cache).parent = kEdge ]
 			kEdge	
 		} else {
 			null

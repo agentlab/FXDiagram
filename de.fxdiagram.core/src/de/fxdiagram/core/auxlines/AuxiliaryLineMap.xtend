@@ -5,6 +5,8 @@ import com.google.common.collect.Multimap
 import de.fxdiagram.core.XNode
 import java.util.Map
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class AuxiliaryLineMap<T> {
 	
 	Multimap<Integer, AuxiliaryLine> store = HashMultimap.create
@@ -21,9 +23,9 @@ class AuxiliaryLineMap<T> {
 	}
 	
 	def add(AuxiliaryLine line) {
-		line.relatedNodes?.forEach[ removeByNode(it) ]
+		line.relatedNodes?.forEachExt[ removeByNode(it) ]
 		store.put(line.position.getKey, line)
-		line.relatedNodes?.forEach[ node2entry.put(it, line) ]
+		line.relatedNodes?.forEachExt[ node2entry.put(it, line) ]
 	}
 
 	def removeByNode(XNode node) {

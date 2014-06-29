@@ -4,6 +4,7 @@ import de.fxdiagram.core.XDiagram
 import de.fxdiagram.core.XNode
 import de.fxdiagram.core.XShape
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.BoundsExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 import de.fxdiagram.core.viewport.ViewportTransition
@@ -57,7 +58,7 @@ class DiagramNavigationBehavior extends AbstractHostBehavior<XDiagram> implement
 		val ViewportCommand command = [
 			new ViewportTransition(host.root, node.localToDiagram(node.boundsInLocal.center), 1) => [
 				onFinished = [
-					host.root.currentSelection.forEach[selected = false]
+					host.root.currentSelection.forEachExt[selected = false]
 					node.selected = true
 				]
 			]

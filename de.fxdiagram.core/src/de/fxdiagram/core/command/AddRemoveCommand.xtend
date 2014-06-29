@@ -11,6 +11,8 @@ import javafx.animation.ParallelTransition
 import javafx.util.Duration
 import javafx.animation.Animation
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class AddRemoveCommand extends AbstractAnimationCommand {
 	
 	boolean isAdd
@@ -36,7 +38,7 @@ class AddRemoveCommand extends AbstractAnimationCommand {
 	}
 	
 	override createExecuteAnimation(CommandContext context) {
-		shapes.forEach[
+		shapes.forEachExt[
 			switch it {
 				XNode: {
 					if(isAdd) {
@@ -79,7 +81,7 @@ class AddRemoveCommand extends AbstractAnimationCommand {
 		new ParallelTransition => [ 
 			children += shapes.map[disappear(defaultUndoDuration)]
 			onFinished = [
-				shapes.forEach[
+				shapes.forEachExt[
 					switch it {
 						XNode: 
 							diagram.nodes -= it
@@ -92,7 +94,7 @@ class AddRemoveCommand extends AbstractAnimationCommand {
 	}
 	
 	protected def remove(extension CommandContext context) {
-		shapes.forEach[
+		shapes.forEachExt[
 			switch it {
 				XNode:  
 					diagram.nodes += it

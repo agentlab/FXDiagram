@@ -7,6 +7,8 @@ import java.util.List
 import java.util.Map
 import javafx.scene.input.KeyEvent
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 interface DiagramAction {
 	
 	def boolean matches(KeyEvent event) 
@@ -23,7 +25,7 @@ class DiagramActionRegistry {
 	Map<Symbol.Type, DiagramAction> symbol2action = newHashMap 
 	
 	def void operator_add(Iterable<? extends DiagramAction> diagramActions) {
-		diagramActions.forEach[this += it]
+		diagramActions.forEachExt[this += it]
 	} 
 	
 	def void operator_add(DiagramAction diagramAction) {

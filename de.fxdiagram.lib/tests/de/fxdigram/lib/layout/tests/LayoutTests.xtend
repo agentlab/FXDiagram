@@ -11,6 +11,8 @@ import javafx.scene.Scene
 import javafx.scene.layout.StackPane
 import javafx.stage.Stage
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class LayoutTests extends Application {
 
 	XDiagram nestedDiagram
@@ -54,11 +56,11 @@ class LayoutTests extends Application {
 			nestedDiagram.activate
 		]
 		stage.show
-		nestedDiagram.getNodes.forEach[printLayoutGeometry]
+		nestedDiagram.getNodes.forEachExt[printLayoutGeometry]
 		nestedDiagram.printLayoutGeometry
 		rectangleBorderPane.printLayoutGeometry
 
-		nestedDiagram.getNodes.forEach[printSizes]
+		nestedDiagram.getNodes.forEachExt[printSizes]
 		nestedDiagram.printSizes
 		rectangleBorderPane.printSizes
 

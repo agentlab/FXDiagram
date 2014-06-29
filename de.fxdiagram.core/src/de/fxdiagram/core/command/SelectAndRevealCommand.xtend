@@ -8,6 +8,7 @@ import java.util.Set
 import static de.fxdiagram.core.extensions.NumberExpressionExtensions.*
 import static java.lang.Math.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.BoundsExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 import static extension de.fxdiagram.core.extensions.DurationExtensions.*
@@ -52,14 +53,14 @@ class SelectAndRevealCommand extends ViewportCommand {
 	}
 	
 	override getUndoAnimation(CommandContext context) {
-		(context.root.diagram.nodes + context.root.diagram.connections).forEach[
+		(context.root.diagram.nodes + context.root.diagram.connections).forEachExt[
 			selected = originalSelection.contains(it) 	
 		] 
 		super.getUndoAnimation(context)
 	}
 	
 	override getRedoAnimation(CommandContext context) {
-		(context.root.diagram.nodes + context.root.diagram.connections).forEach[
+		(context.root.diagram.nodes + context.root.diagram.connections).forEachExt[
 			selected = selectionPredicate.apply(it) 	
 		] 
 		super.getRedoAnimation(context)

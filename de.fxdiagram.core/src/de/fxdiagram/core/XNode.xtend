@@ -15,6 +15,7 @@ import javafx.scene.effect.InnerShadow
 
 import static javafx.collections.FXCollections.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.BoundsExtensions.*
 
 @Logging
@@ -92,7 +93,7 @@ class XNode extends XShape {
 			effect = selectionEffect
 			scaleX = 1.05
 			scaleY = 1.05
-			(outgoingConnections + incomingConnections).forEach[toFront]
+			(outgoingConnections + incomingConnections).forEachExt[toFront]
 		} else {
 			effect = null
 			scaleX = 1.0

@@ -20,6 +20,8 @@ import javax.json.JsonValue
 
 import static javax.json.JsonValue.ValueType.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 @Logging
 class ModelLoad {
 
@@ -36,7 +38,7 @@ class ModelLoad {
 		val reader = Json.createReader(in)
 		val jsonObject = reader.readObject
 		val node = readNode(jsonObject, '')
-		crossRefs.forEach[resolveCrossReference]
+		crossRefs.forEachExt[resolveCrossReference]
 		return node
 	}
 	

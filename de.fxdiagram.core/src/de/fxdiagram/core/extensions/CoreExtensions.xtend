@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent
 import javafx.scene.transform.Affine
 import javafx.scene.transform.Transform
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.TransformExtensions.*
 
 class CoreExtensions {
@@ -144,7 +145,7 @@ class CoreExtensions {
 	}
 
 	public static def <T, U> addInitializingListener(ObservableMap<T, U> map, InitializingMapListener<T, U> mapListener) {
-		map.entrySet.forEach[mapListener.put.apply(key, value)]
+		map.entrySet.forEachExt[mapListener.put.apply(key, value)]
 		map.addListener(mapListener)
 	} 
 
@@ -170,7 +171,7 @@ class CoreExtensions {
 	} 
 
 	public static def <T> removeInitializingListener(ObservableList<T> list, InitializingListListener<T> listListener) {
-		list.forEach[listListener.remove.apply(it)]
+		list.forEachExt[listListener.remove.apply(it)]
 		list.removeListener(listListener)
 	} 
 
@@ -205,9 +206,9 @@ class InitializingListListener<T> implements ListChangeListener<T> {
 			change.apply(c)
 		while(c.next) 
 			if(add != null && c.wasAdded) 
-				c.addedSubList.forEach[add.apply(it)]
+				c.addedSubList.forEachExt[add.apply(it)]
 			if(remove != null && c.wasRemoved)
-				c.removed.forEach[remove.apply(it)]
+				c.removed.forEachExt[remove.apply(it)]
 	}
 }	
 

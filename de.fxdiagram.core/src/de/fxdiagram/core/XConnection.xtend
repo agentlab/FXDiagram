@@ -28,6 +28,7 @@ import static de.fxdiagram.core.XConnection.Kind.*
 import static de.fxdiagram.core.extensions.Point2DExtensions.*
 import static javafx.collections.FXCollections.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.BezierExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 
@@ -124,7 +125,7 @@ class XConnection extends XShape {
 				layoutYProperty.removeListener(controlPointListener)
 			]		
 		]);
-		labels.forEach[activate]
+		labels.forEachExt[activate]
 		connectionRouter.activate
 		updateShapes
 		parentProperty.addListener [
@@ -230,7 +231,7 @@ class XConnection extends XShape {
 		super.layoutChildren
 		try {
 			connectionRouter.calculatePoints
-			labels.forEach[ place(controlPoints) ]	
+			labels.forEachExt[ place(controlPoints) ]	
 			sourceArrowHead?.place
 			targetArrowHead?.place
 		} catch(Exception exc) {

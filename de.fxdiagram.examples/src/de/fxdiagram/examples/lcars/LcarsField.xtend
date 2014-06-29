@@ -27,6 +27,7 @@ import javafx.scene.text.Text
 
 import static de.fxdiagram.examples.lcars.LcarsExtensions.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 import static extension javafx.util.Duration.*
 import de.fxdiagram.core.command.AddRemoveCommand
@@ -76,7 +77,7 @@ class LcarsField extends Parent {
 				]
 			}
 			onMousePressed = [ event |
-				allTextNodes.forEach[fill = RED]
+				allTextNodes.forEachExt[fill = RED]
 				queryProgress = createQueryProgress;
 				(lcarsNode.node as Pane).children += queryProgress
 				if(event.button != MouseButton.PRIMARY) {
@@ -139,7 +140,7 @@ class LcarsField extends Parent {
 			queryProgress = null			
 		}
 		allTextNodes.head.fill = FLESH
-		allTextNodes.tail.forEach[fill = ORANGE]
+		allTextNodes.tail.forEachExt[fill = ORANGE]
 	}
 	
 	def createQueryProgress() {
@@ -195,7 +196,7 @@ class LcarsQueryTask extends Task<Void> {
 		alreadyConnected.add(lcarsNode.domainObject.id)
 		siblings
 			.filter[!alreadyConnected.contains(get('_id').toString)]
-			.forEach[it, i | 
+			.forEachExt[it, i | 
 				val descriptor = modelProvider.createLcarsEntryDescriptor(it)
 				chooser.addChoice(new LcarsNode(descriptor) => [
 					width = lcarsNode.width

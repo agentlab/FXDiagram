@@ -26,6 +26,7 @@ import javafx.scene.Node
 import javafx.scene.Parent
 import javafx.scene.layout.Pane
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.css.JavaToCss.*
 
 @Logging
@@ -80,7 +81,7 @@ class XRoot extends Parent implements XActivatable {
 			-fx-background-color: «newDiagram.backgroundPaint.toCss»;
 			-fx-text-fill: «newDiagram.foregroundPaint.toCss»;
 		'''
-		diagram.fixedButtons.entrySet.forEach[headsUpDisplay.add(key, value)]
+		diagram.fixedButtons.entrySet.forEachExt[headsUpDisplay.add(key, value)]
 		newDiagram.centerDiagram(false)
 	}
 	
@@ -147,13 +148,13 @@ class XRoot extends Parent implements XActivatable {
 	def <T extends DomainObjectProvider> T getDomainObjectProvider(Class<T> providerClazz) {
 		if(domainObjectProviderCache == null) {
 			domainObjectProviderCache = newHashMap
-			domainObjectProviders.forEach[domainObjectProviderCache.put(class, it)]
+			domainObjectProviders.forEachExt[domainObjectProviderCache.put(class, it)]
 		}
 		domainObjectProviderCache.get(providerClazz) as T
 	}
 	
 	def replaceDomainObjectProviders(List<DomainObjectProvider> newDomainObjectProviders) {
-		newDomainObjectProviders.forEach[ newProvider |
+		newDomainObjectProviders.forEachExt[ newProvider |
 			val oldProvider = getDomainObjectProvider(newProvider.class)
 			if(oldProvider != null) {
 				domainObjectProviders.set(domainObjectProviders.indexOf(oldProvider), newProvider)

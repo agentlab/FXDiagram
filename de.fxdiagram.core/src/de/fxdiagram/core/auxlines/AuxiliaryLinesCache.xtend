@@ -9,6 +9,7 @@ import javafx.collections.ListChangeListener
 import javafx.geometry.Bounds
 import javafx.geometry.Orientation
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 
 class AuxiliaryLinesCache {
@@ -38,7 +39,7 @@ class AuxiliaryLinesCache {
 			}
 		]
 		diagram.nodes.addListener(nodesListener)
-		diagram.getNodes.forEach[watchNode]
+		diagram.getNodes.forEachExt[watchNode]
 	}
 
 	def getAuxiliaryLines(XNode node) {

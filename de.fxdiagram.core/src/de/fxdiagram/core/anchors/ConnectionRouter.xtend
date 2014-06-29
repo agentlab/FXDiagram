@@ -15,6 +15,7 @@ import static de.fxdiagram.core.XConnection.Kind.*
 import static de.fxdiagram.core.XControlPoint.Type.*
 import static java.lang.Math.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.BoundsExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 
@@ -169,7 +170,7 @@ class ConnectionRouter implements XActivatable {
 					layoutY = targetPoint.y
 				]
 			}
-			controlPoints.forEach[update(controlPoints)]
+			controlPoints.forEachExt[update(controlPoints)]
 		}
 	}
 	

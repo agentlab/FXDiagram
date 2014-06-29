@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.input.ScrollEvent
 import javafx.scene.input.SwipeEvent
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static de.fxdiagram.core.extensions.ButtonExtensions.*
 import static java.lang.Math.*
 import static javafx.geometry.Side.*
@@ -263,7 +264,7 @@ abstract class AbstractChooser implements XDiagramTool {
 
 	protected def nodeChosen(XNode choice) {
 		if (choice != null) {
-			getNodes.forEach[onMouseClicked = null]
+			getNodes.forEachExt[onMouseClicked = null]
 			group.children.remove(choice)
 			val shapesToAdd = <XShape>newArrayList
 			var existingChoice = diagram.nodes.findFirst[domainObject == choice.domainObject]

@@ -51,6 +51,8 @@ import javafx.scene.control.Button
 import javafx.stage.Stage
 import org.eclipse.emf.ecore.EcorePackage
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class Demo extends Application {
 
 	XRoot root
@@ -130,7 +132,7 @@ class Demo extends Application {
 //			nodes += new SummarySlideDeck
 			val deltaX = scene.width / (nodes.size + 2)
 			val deltaY = scene.height / (nodes.size + 2)
-			nodes.forEach[
+			nodes.forEachExt[
 				node, i |
 				node.layoutX = i * deltaX - node.layoutBounds.width / 2
 				node.layoutY = i * deltaY - node.layoutBounds.height / 2

@@ -13,6 +13,8 @@ import javafx.beans.property.Property
 import javafx.beans.property.StringProperty
 import javax.json.Json
 import javax.json.stream.JsonGenerator
+
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.ClassLoaderExtensions.*
 
 @Logging
@@ -51,8 +53,8 @@ class ModelSave {
 				else
 					gen.writeStartObject()
 				gen.write("__class", className)
-				element.properties.forEach[write(gen, it, element.getType(it), currentId)]
-				element.listProperties.forEach[write(gen, it, element.getType(it), currentId)]
+				element.properties.forEachExt[write(gen, it, element.getType(it), currentId)]
+				element.listProperties.forEachExt[write(gen, it, element.getType(it), currentId)]
 				gen.writeEnd
 			}
 		}

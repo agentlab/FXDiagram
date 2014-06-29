@@ -21,6 +21,8 @@ import org.eclipse.xtend.lib.macro.declaration.TypeReference
 import org.eclipse.xtend.lib.macro.declaration.Visibility
 import org.eclipse.xtend.lib.macro.declaration.FieldDeclaration
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 @Active(ModelNodeProcessor)
 @Target(ElementType.TYPE)
 annotation ModelNode {
@@ -38,7 +40,7 @@ class ModelNodeProcessor extends AbstractClassProcessor {
 		val validPropertyNames = newArrayList
 		modelAnnotation
 			.getStringArrayValue('value')
-			.forEach[
+			.forEachExt[
 				val accessor = getPropertyAccessor(annotatedClass, it, true)
 				if(accessor == null) 
 					modelAnnotation.addError("Cannot find JavaFX property '" + it + "'"

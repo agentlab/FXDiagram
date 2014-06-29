@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.input.MouseButton
 import javafx.scene.input.MouseEvent
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension javafx.scene.layout.BorderPane.*
 
 @Logging
@@ -34,7 +35,7 @@ class DiagramActionTool implements XDiagramTool {
 		keyHandler = [ event |
 			root.diagramActionRegistry.actions
 				.filter[matches(event)]
-				.forEach[ 
+				.forEachExt[ 
 					if (!event.consumed) 
 						it.perform(root)
 				]

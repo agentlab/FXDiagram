@@ -5,6 +5,8 @@ import de.fxdiagram.core.XNode
 import de.fxdiagram.core.XShape
 import javafx.scene.Group
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class AuxiliaryLinesSupport {
 	
 	AuxiliaryLinesCache cache
@@ -21,7 +23,7 @@ class AuxiliaryLinesSupport {
 		val selectedNodes = selection.filter(XNode)
 		if(selectedNodes.size == 1) {
 			val lines = cache.getAuxiliaryLines(selectedNodes.head)
-			lines.forEach[ group.children += createNode ]
+			lines.forEachExt[ group.children += createNode ]
 		}	
 	}
 	

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass
 import static de.fxdiagram.core.extensions.ButtonExtensions.*
 import static javafx.geometry.Side.*
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
 import static extension de.fxdiagram.core.extensions.CoreExtensions.*
 import de.fxdiagram.core.XRapidButtonAction
 
@@ -41,7 +42,7 @@ class AddESuperTypeRapidButtonBehavior extends AbstractConnectionRapidButtonBeha
 	
 	override protected createChooser(XRapidButton button, Set<ESuperTypeDescriptor> availableChoiceKeys, Set<ESuperTypeDescriptor> unavailableChoiceKeys) {
 		val chooser = new CoverFlowChooser(host, button.chooserPosition)
-		availableChoiceKeys.forEach[
+		availableChoiceKeys.forEachExt[
 			chooser.addChoice(it.createNode, it)
 		]
 		chooser.connectionProvider = [

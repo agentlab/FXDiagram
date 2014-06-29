@@ -3,6 +3,8 @@ package de.fxdiagram.core.model
 import java.util.IdentityHashMap
 import java.util.Map
 
+import static extension de.fxdiagram.annotations.ForeachExtensions.*
+
 class Model {
 
 	Map<Object, ModelElement> index = new IdentityHashMap
@@ -40,7 +42,7 @@ class Model {
 		]
 		element.listProperties.forEach [
 			if(!element.isPrimitive(it))
-				value.forEach[it?.addElement]
+				value.forEachExt[it?.addElement]
 		]
 		element
 	}
